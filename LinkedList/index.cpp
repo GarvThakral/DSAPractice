@@ -141,6 +141,20 @@ void deleteFromNPos(Node*& head , int pos){
     delete delNode;
 }
 
+void reverseList(Node*& head){
+    Node* prev = nullptr;
+    Node* curr = head;
+    Node* next = head->next;
+    while(next != nullptr){
+        curr->next = prev;
+        prev = curr;
+        curr = next;
+        next = next->next;
+        curr->next = prev;
+    }
+    head = curr;
+}
+
 void traverse(Node*& head){
     if(head == nullptr){
         cout << "The list is empty" << endl;
@@ -154,11 +168,11 @@ void traverse(Node*& head){
 }
 
 int main(){
-    // Node* head = new Node(10);
-    // addToHead(head,9);
-    // addToHead(head,8);
-    // addToHead(head,7);
-    // deleteFromNPos(head,4);
-    // traverse(head);
+    Node* head = new Node(10);
+    addToHead(head,9);
+    addToHead(head,8);
+    addToHead(head,7);
+    reverseList(head);
+    traverse(head);
     return 0;
 }
