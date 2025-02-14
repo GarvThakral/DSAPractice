@@ -1,0 +1,17 @@
+// enqueue(x)	Inserts an element x at the rear (end) of the queue.
+// dequeue()	Removes and returns the front element of the queue.
+// front() / peek()	Returns the front element without removing it.
+// rear() / back()	Returns the last element of the queue.
+// isEmpty()	Checks if the queue is empty.
+// size()	Returns the number of elements in the queue.
+
+Circular Queue (Fixed-size queue with wrap-around)
+Operation	Description
+enqueue(x)	Adds an element at the rear, wraps around if needed.
+dequeue()	Removes an element from the front, wraps around if needed.
+Deque (Double-ended Queue)
+Operation	Description
+push_front(x)	Adds an element to the front.
+push_back(x)	Adds an element to the rear.
+pop_front()	Removes an element from the front.
+pop_back()	Removes an element from the rear.
