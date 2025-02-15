@@ -1,0 +1,10 @@
+push(x)	Inserts an element x at the top of the stack.
+pop()	Removes and returns the top element.
+top() / peek()	Returns the top element without removing it.
+isEmpty()	Checks if the stack is empty.
+size()	Returns the number of elements in the stack.
+
+2. Additional Operations (for Fixed-size Stacks)
+Operation	Description
+isFull()	Checks if the stack is full (for stacks implemented with arrays).
+clear()	Removes all elements from the stack.

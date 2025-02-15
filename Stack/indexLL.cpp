@@ -1,0 +1,65 @@
+#include <iostream>
+using namespace std;
+
+struct Node{
+    int data;
+    Node* next;
+    Node(int val){
+        data = val;
+        next = nullptr;
+    }
+};
+
+Node* head = nullptr;
+Node* stackTop = head;
+
+void push(int val){
+    Node* newNode = new Node(val);
+    if(head == nullptr){
+        head = newNode;
+        cout << "Pushed " << val << " to the stack" << endl;
+        return;
+    }
+    stackTop->next = newNode;
+    stackTop = newNode;
+    cout << "Pushed " << val << " to the stack" << endl;
+}
+
+int pop(){
+    if(head == nullptr){
+        cout << "The stack is empty" << endl;
+        return 0;        
+    }
+    cout << "Popped " <<  << " from the stack" << endl;
+}
+int top(){
+    if(head == nullptr){
+        cout << "The stack is empty" << endl;
+        return 0;        
+    }
+    return stackTop->data;
+}
+
+bool isEmpty(){
+    if(head == nullptr){
+        return true;
+    }
+    return false;
+}   
+
+int size(){
+    if(head == nullptr){
+        return 0;
+    }
+    int size = 0;
+    Node* temp = head;
+    while(temp != nullptr){
+        size++;
+        temp = temp->next;
+    }
+    return size;
+}
+
+int main(){
+
+}
