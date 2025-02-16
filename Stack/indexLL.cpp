@@ -17,6 +17,7 @@ void push(int val){
     Node* newNode = new Node(val);
     if(head == nullptr){
         head = newNode;
+        stackTop = newNode;
         cout << "Pushed " << val << " to the stack" << endl;
         return;
     }
@@ -30,7 +31,23 @@ int pop(){
         cout << "The stack is empty" << endl;
         return 0;        
     }
-    cout << "Popped " <<  << " from the stack" << endl;
+    if(head->next == nullptr){
+        int dat = head->data;
+        delete head;
+        head = nullptr;
+        stackTop = nullptr;
+        return dat;
+    }
+    Node* temp = head;
+    while(temp->next->next != nullptr){
+        temp = temp->next;
+    }
+    stackTop = temp;
+    int dat = stackTop->data;
+    delete temp->next;
+    temp->next = nullptr;
+    return dat;
+    
 }
 int top(){
     if(head == nullptr){
@@ -61,5 +78,13 @@ int size(){
 }
 
 int main(){
-
+    push(10);
+    push(20);
+    push(30);
+    push(40);
+    pop();
+    pop();
+    pop();
+    pop();
+    cout << top();
 }
