@@ -32,9 +32,9 @@ void inorderTraversal(BinaryTree*& head){
         return;
     }
     inorderTraversal(head->left);
-    cout << head->left->data;
-    cout << head->data;
-    cout << head->right->data;
+    cout << head->left->data << " ";
+    cout << head->data << " ";
+    cout << head->right->data << " ";
 }
 
 int main(){
@@ -44,6 +44,6 @@ int main(){
     insertNode(head,30);
     insertNode(head,5);
     insertNode(head,6);
-    cout << head->left->left->right->data;
+    inorderTraversal(head);
     return 0;
 }
