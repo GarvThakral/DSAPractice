@@ -46,6 +46,8 @@ void preorderTraversal(BinaryTree* head){
 
 }
 
+
+
 void postorderTraversal(BinaryTree* head){
     if(head == nullptr){
         return;
@@ -55,14 +57,43 @@ void postorderTraversal(BinaryTree* head){
     cout << head->data << " ";
 }
 
+int findMin(BinaryTree* head){
+    if(head == nullptr){
+        cout << "The list is empty" << endl;
+        return 0;
+    }
+    while(head->left != nullptr){
+        head = head->left;
+    }
+    return head->data;
+}
+
+int findMax(BinaryTree* head){
+    if(head == nullptr){
+        cout << "The list is empty" << endl;
+        return 0;
+    }
+    while(head->right != nullptr){
+        head = head->right;
+    }
+    return head->data;
+}
+
 int main(){
     BinaryTree* head = nullptr;
     insertNode(head,20);
     insertNode(head,10);
     insertNode(head,30);
+    insertNode(head,32);
+    insertNode(head,31);
+    insertNode(head,39);
     insertNode(head,5);
     insertNode(head,6);
     insertNode(head,4);
-    postorderTraversal(head);
+    insertNode(head,2);
+    insertNode(head,3);
+    insertNode(head,1);
+    int min = findMax(head);
+    cout << min;
     return 0;
 }
