@@ -27,14 +27,32 @@ void insertNode(BinaryTree*& head , int val){
     }
 }
 
-void inorderTraversal(BinaryTree*& head){
+void inorderTraversal(BinaryTree* head){
     if(head == nullptr){
         return;
     }
     inorderTraversal(head->left);
-    cout << head->left->data << " ";
     cout << head->data << " ";
-    cout << head->right->data << " ";
+    inorderTraversal(head->right);
+}
+
+void preorderTraversal(BinaryTree* head){
+    if(head == nullptr){
+        return ;
+    }
+    cout << head->data << " ";
+    preorderTraversal(head->left);
+    preorderTraversal(head->right);
+
+}
+
+void postorderTraversal(BinaryTree* head){
+    if(head == nullptr){
+        return;
+    }
+    postorderTraversal(head->left);
+    postorderTraversal(head->right);
+    cout << head->data << " ";
 }
 
 int main(){
@@ -44,6 +62,7 @@ int main(){
     insertNode(head,30);
     insertNode(head,5);
     insertNode(head,6);
-    inorderTraversal(head);
+    insertNode(head,4);
+    postorderTraversal(head);
     return 0;
 }

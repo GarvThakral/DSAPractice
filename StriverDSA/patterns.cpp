@@ -157,21 +157,36 @@ using namespace std;
 //         }
 //         cout << endl;
 //     }
-
-
+// 1
+// 01
+// 101
+// 0101
+// 10101
+// 010101
+// 1010101
+// bool hah ;
+//     for(int i = 0 ; i < n ;i++){
+//         if(i%2 == 0){
+//             hah = true;
+//         }
+//         for(int j = 0 ; j <= i ;j++){
+//             if(hah == true){
+//                 cout << "1";
+//                 hah = false;
+//             }else{
+//                 cout << "0";
+//                 hah = true;
+//             }
+//         }
+//         cout << endl;
+//     }
 int main(){
-    int n = 6;
-    for(int i = 0 ; i < n*2 -1 ; i++){
-        if(i < 5){
-            for(int j = 0 ; j <= i; j ++ ){
-                cout << "*";
-            }
-        }else{
-            for(int j = 2*n-i-1 ; j > 0; j -- ){
-                cout << "*";
-            }
+    int n = 4;
+    for(int i = 1 ; i <= n ;i++){
+        for(int j = 1; j<=i ;j++){
+            cout << j;
         }
-        cout << endl;
+        cout << endl;        
     }
 
 }
