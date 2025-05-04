@@ -7,6 +7,17 @@ void swap(int& a , int& b){
     b = temp;
     return;
 }
+// {1,5,2,8,7}
+int* insertionSort(int* arr , int size){
+    for(int i = 0 ; i <size-1;i++){
+        int j = i+1;
+        while(j>0 && arr[j-1]>arr[j]){
+            swap(arr[j-1],arr[j]);
+            j--;
+        }
+    }
+    return arr;
+}
 
 int* selectionSort(int* arr,int size){
     for(int i = 0 ; i < size ;i++){
@@ -36,8 +47,8 @@ int* bubbleSort(int* arr,int size){
 
 int main(){
     int size = 5;
-    int arr[size] = {1,5,2,8,7};
-    int* sortedArray = selectionSort(arr,size); 
+    int arr[size] = {1,5,3,2,7};
+    int* sortedArray = insertionSort(arr,size); 
     for(int i = 0 ; i < size;i++){
         cout << sortedArray[i] << endl;
     }
