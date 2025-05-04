@@ -8,6 +8,21 @@ void swap(int& a , int& b){
     return;
 }
 
+int* selectionSort(int* arr,int size){
+    for(int i = 0 ; i < size ;i++){
+        int min = arr[i];
+        int minIndex = i;
+        for(int j = i ; j < size ; j++){
+            if(arr[j]<min){
+                min = arr[j];
+                minIndex = j;
+            }
+        }
+        swap(arr[i],arr[minIndex]);
+    }
+    return arr;
+}
+
 int* bubbleSort(int* arr,int size){
     for(int i = size-1 ; i>=1 ; i--){
         for(int j = 0;j<i;j++){
@@ -22,7 +37,7 @@ int* bubbleSort(int* arr,int size){
 int main(){
     int size = 5;
     int arr[size] = {1,5,2,8,7};
-    int* sortedArray = bubbleSort(arr,size); 
+    int* sortedArray = selectionSort(arr,size); 
     for(int i = 0 ; i < size;i++){
         cout << sortedArray[i] << endl;
     }
