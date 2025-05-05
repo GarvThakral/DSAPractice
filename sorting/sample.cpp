@@ -1,6 +1,77 @@
 #include <iostream>
 using namespace std;
 
+
+int partition(int arr[],int low,int high){
+    int pivot = arr[low];
+    int i = low;
+    int j = high;
+    while(i<j){
+        while(arr[i]<=pivot && i<=high-1){
+            i++;
+        }
+        while(arr[j]>pivot && j>=low+1){
+            j--;
+        }      
+        if(i<j){
+            swap(arr[i],arr[j]);
+        }  
+    }    
+    swap(arr[low],arr[j]);
+    return j;
+}
+
+void quickSort(int arr[],int low , int high){
+    if(low < high){
+        int partitionIndex = partition(arr,low,high);
+        quickSort(arr,low,partitionIndex-1);
+        quickSort(arr,partitionIndex+1,high);
+    }
+}
+
+void merge(int arr[],int low , int mid , int high){
+    int left = low;
+    int right = mid+1;
+    int temp[high-low+1];
+    int i = 0;
+    while(left <= mid && right <= high){
+        if(arr[left] <= arr[right]){
+            temp[i] = arr[left];
+            left++;
+            i++;
+        }else{
+            temp[i] = arr[right];
+            right++;
+            i++;
+        }
+    }
+    while(left <= mid){
+        temp[i] = arr[left];
+        left++;
+        i++;
+    }
+    while(right <= high){
+        temp[i] = arr[right];
+        right++;
+        i++;
+    }
+    i = 0;
+    for(int j = low; j<=high ;j++){
+        arr[j] = temp[i];
+        i++;
+    }
+}
+void mergeSort(int arr[],int low , int high){
+    if(low>=high){
+        return;
+    }
+    int mid = (low+high)/2;
+    mergeSort(arr,low,mid);
+    mergeSort(arr,mid+1,high);
+    merge(arr,low,mid,high);
+}
+
+
 void swap(int& a , int& b){
     int temp = a;
     a = b;
@@ -48,8 +119,8 @@ int* bubbleSort(int* arr,int size){
 int main(){
     int size = 5;
     int arr[size] = {1,5,3,2,7};
-    int* sortedArray = insertionSort(arr,size); 
+    quickSort(arr,0,4);
     for(int i = 0 ; i < size;i++){
-        cout << sortedArray[i] << endl;
+        cout << arr[i] << endl;
     }
 }
