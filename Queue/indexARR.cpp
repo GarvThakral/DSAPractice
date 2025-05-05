@@ -57,13 +57,7 @@ public:
 
 int main(){
     AbstractQueue* q1 = new AbstractQueue(3);
-    q1->enqueue(10);
-    cout << q1->rear() << endl;
-    q1->enqueue(20);
-    cout << q1->rear() << endl;
-    q1->enqueue(30);
-    cout << q1->rear() << endl;
-    q1->enqueue(40);
-    cout << q1->rear() << endl;
+    bool yes = q1->isEmpty();
+    cout << yes << endl;
     return 0; 
 }
