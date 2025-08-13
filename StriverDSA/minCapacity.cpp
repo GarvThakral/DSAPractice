@@ -1,3 +1,31 @@
+// Python Implementation
+
+// class Solution(object):
+//     def shipWithinDays(self, weights, days):
+//         """
+//         :type weights: List[int]
+//         :type days: int
+//         :rtype: int
+//         """
+//         low = max(weights)
+//         high = sum(weights)
+//         capacity = 0
+//         while(low <= high):
+//             mid = (low+high)//2
+//             day = 1
+//             curSum = 0
+//             for i in range(len(weights)):
+//                 if((weights[i]+curSum)>mid):
+//                     curSum = 0
+//                     day+=1
+//                 curSum+=weights[i]
+//             if(day > days):
+//                 low = mid +1
+//             else:
+//                 capacity = mid
+//                 high = mid-1
+//         return capacity
+
 #include<iostream>
 #include<vector>
 using namespace std;
