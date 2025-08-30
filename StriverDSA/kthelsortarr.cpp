@@ -4,6 +4,7 @@
 #include <cmath>
 using namespace std;
 
+
 int kthElement(vector<int> &a, vector<int>& b, int k) {
     int numEl = 0;
     int i = 0;
@@ -50,3 +51,34 @@ int main(){
     int k = 7;
     cout << kthElement(nums , nums1 , k);
 }
+
+// Python implementation
+// def kthElement(a, b, k):
+//     numEl = 0
+//     i = 0
+//     j = 0
+//     n = len(a)
+//     n1 = len(b)
+//     val = 0
+//     while(i < n and j < n1):
+//         if(numEl == k):
+//             return val
+//         if(a[i] < b[j]):
+//             numEl+=1
+//             val = a[i]
+//             i+=1
+//         else:
+//             numEl+=1
+//             val = a[j]
+//             j+=1
+//     while(j < n1):
+//         if(numEl == k):
+//             return b[j]
+//         numEl+=1
+//         j+=1
+//     while(i < n1):
+//         if(numEl == k):
+//             return a[i]
+//         numEl+=1
+//         i+=1
+//     return val
