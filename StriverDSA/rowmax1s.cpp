@@ -3,15 +3,28 @@
 #include <cmath>
 #include <algorithm>
 #include <numeric>
+#include <climits>
 
 using namespace std;
 
 int count1s(vector<int> row){
     int num1s = 0;
-    for(int x:row){
-        if(x == 1) num1s++;
+    int ans = INT_MIN;
+    int low = 0;
+    int high = row.size()-1;
+    while(low<=high){
+        int mid = (low+high)/2;
+        if(row[mid]>=1){
+            ans = mid;
+            high = mid-1;
+        }else{
+            low =mid+1;
+        }
     }
-    return num1s;
+    if(ans == INT_MIN){
+        return 0;
+    }
+    return row.size()-ans;
 }
 
 int rowWithMax1s(vector < vector < int >> & mat) {
