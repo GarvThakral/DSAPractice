@@ -17,3 +17,13 @@ ListNode* insertBeforeHead(ListNode* head, int X) {
         head = newNode;
         return head;
     }
+
+    ListNode* middleNode(ListNode* head) {
+        ListNode* tortoise = head;
+        ListNode* hare = head;
+        while(hare!=nullptr && hare->next!=nullptr){
+            tortoise = tortoise->next;
+            hare = hare->next->next;
+        }
+        return tortoise;
+    }
