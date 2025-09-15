@@ -27,3 +27,41 @@ ListNode* insertBeforeHead(ListNode* head, int X) {
         }
         return tortoise;
     }
+
+
+    bool hasCycle(ListNode *head) {
+        ListNode* temp = head;
+        unordered_map<ListNode* , int> newMap;
+        while(temp!=nullptr){
+            newMap[temp]+=1;
+            if(newMap[temp] > 1){
+                return true;
+            }
+            temp = temp->next;
+        }
+        return false;
+    }
+
+ */
+class Solution {
+public:
+    ListNode* deleteMiddle(ListNode* head) {
+        if(head->next == nullptr){
+            return nullptr;
+        }
+        ListNode* tortoise = head;
+        ListNode* hare = head;
+        ListNode* prev = head;
+        while(hare!=nullptr && hare->next!=nullptr){
+            prev = tortoise;
+            tortoise = tortoise->next;
+            hare = hare->next->next;
+        }
+        if(tortoise->next!=nullptr){
+            prev->next = tortoise->next;
+        }else{
+            prev->next = nullptr;
+        }
+        return head;
+    }
+};
