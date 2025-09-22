@@ -66,15 +66,32 @@ public:
     }
 };
 
-bool isPalindrome(ListNode* head) {
-    vector<int> list1;
-    vector<int> list2;
-    ListNode* temp = head;
-    while(temp!=nullptr){
-        list1.push_back(temp->val);
-        list2.push_back(temp->val);
-        temp = temp->next;
+ListNode* reverseLinkedList(ListNode*& head){
+        ListNode* prev = nullptr;
+        ListNode* curr = head;
+        while(curr!=nullptr){
+            ListNode* next = curr->next;
+            curr->next = prev;
+            prev = curr;
+            curr = next;
+        }
+        return prev;
     }
-    reverse(list2.begin(),list2.end());
-    return list1 == list2;
-}
+
+    bool isPalindrome(ListNode* head) {
+        ListNode* tortoise = head;
+        ListNode* hare = head;
+        while(hare!=nullptr && hare->next!=nullptr){
+            tortoise = tortoise->next;
+            hare = hare->next->next;
+        }
+        ListNode* reversedMid = reverseLinkedList(tortoise);
+        while(reversedMid!=nullptr){
+            if(head->val!=reversedMid->val){
+                return false;
+            }
+            reversedMid = reversedMid->next;
+            head = head->next;
+        }
+        return true;
+    }
