@@ -65,3 +65,16 @@ public:
         return head;
     }
 };
+
+bool isPalindrome(ListNode* head) {
+    vector<int> list1;
+    vector<int> list2;
+    ListNode* temp = head;
+    while(temp!=nullptr){
+        list1.push_back(temp->val);
+        list2.push_back(temp->val);
+        temp = temp->next;
+    }
+    reverse(list2.begin(),list2.end());
+    return list1 == list2;
+}
