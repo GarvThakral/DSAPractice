@@ -87,16 +87,50 @@ void traverse(ListNode* head){
     cout << endl;
     return;
 }
+
+int recursive(ListNode*& head){
+    int carry = 0;
+    if(head != nullptr){
+        carry = recursive(head->next);
+        if(head->next == nullptr){
+            if(head->val == 9){
+                head->val = 0;
+                return 1;
+            }else{
+                head->val += 1;
+                return 0;
+            }
+        }
+        else{
+            if((head->val+carry)< 10){
+                head->val += carry;
+                return 0;
+            }else{
+                head->val = 0;
+                return 1;
+            }
+        }
+    }
+    return carry;
+
+}
+
 int main(){
     vector<int> nums = {2,2,1,1,1,2,2}; 
 
-    ListNode* head = new ListNode(9);
+    ListNode* head = new ListNode(1);
     head->next = new ListNode(9);
     head->next->next = new ListNode(9);
-    head->next->next->next = new ListNode(9);
+    head->next->next->next = new ListNode(1);
 
     traverse(head);
-    ListNode* newHead = addOne(head);
-    traverse(newHead);
+    int rem = recursive(head);
+    if(rem == 1){
+        ListNode* newNode = new ListNode(1);
+        newNode->next = head;
+        head = newNode;
+    }
+    cout << rem << endl;
+    traverse(head);
 
 }
