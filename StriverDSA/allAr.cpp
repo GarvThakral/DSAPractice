@@ -154,14 +154,38 @@ int lengthOfLoopBetter(ListNode* head){
     }
     return 0;
 }
+int lengthOfLoopBest(ListNode* head){
+    ListNode* later;
+    ListNode* tortoise = head;
+    ListNode* hare = head;
+    while(hare!=nullptr && hare->next!=nullptr){
+        tortoise = tortoise->next;
+        hare = hare->next->next;
+        if(tortoise == hare){
+            break;
+        }
+    }
+    if(tortoise == hare){
+        int length=1;
+        later = hare;
+        while(hare->next!=later){
+            hare = hare->next;
+            length++;
+        }
+        return length;
+
+    }
+    return 0;
+}
 
 int main(){
     vector<int> nums = {2,2,1,1,1,2,2}; 
 
     ListNode* head = new ListNode(1);
-    head->next->next = new ListNode(3);
-    head->next->next->next = new ListNode(7);
-    head->next->next->next->next = new ListNode(4);
-    int len = lengthOfLoopBetter(head);
+    head->next = new ListNode(3);
+    head->next->next = new ListNode(7);
+    head->next->next->next = new ListNode(4);
+    head->next->next->next->next = head->next;
+    int len = lengthOfLoopBest(head);
     cout << len << endl;
 }
