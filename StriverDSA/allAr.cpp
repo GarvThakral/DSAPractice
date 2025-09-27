@@ -178,6 +178,25 @@ int lengthOfLoopBest(ListNode* head){
     return 0;
 }
 
+ListNode* startingPoint(ListNode* head){
+    ListNode* tortoise = head;
+    ListNode* hare = head;
+    while(hare!=nullptr && hare->next!=nullptr){
+        tortoise = tortoise->next;
+        hare = hare->next->next;
+        if(tortoise == hare){
+            tortoise = head;
+            while(tortoise!=hare){
+                tortoise = tortoise->next;
+                hare = hare->next;
+            }
+            return tortoise;
+        }
+    }
+
+    return nullptr;
+}
+
 int main(){
     vector<int> nums = {2,2,1,1,1,2,2}; 
 
