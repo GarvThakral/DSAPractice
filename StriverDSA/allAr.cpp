@@ -115,22 +115,53 @@ int recursive(ListNode*& head){
 
 }
 
+int lengthOfLoop(ListNode* head){
+    unordered_map<ListNode*,int> newMap;
+    ListNode* temp  = head;
+    int length = 1;
+    ListNode* nodeToStop;
+    while(true){
+        if(temp->next == nullptr){
+            return 0;
+        }
+        if(newMap.find(temp->next)!= newMap.end()){
+            length = 1;
+            break;
+        }else{
+            newMap[temp] = 1;
+            nodeToStop = temp;
+            temp = temp->next;
+        }
+
+    }
+    while(temp!=nodeToStop){
+        length++;
+        temp = temp->next;
+    }
+    return length;
+}
+
+int lengthOfLoopBetter(ListNode* head){
+    unordered_map<ListNode* , int> newMap;
+    int index = 0;
+    while(head!=nullptr){
+        if(newMap.find(head)!=newMap.end()){
+            return index-newMap[head];
+        }
+        newMap[head] = index;
+        head = head->next;
+        index++; 
+    }
+    return 0;
+}
+
 int main(){
     vector<int> nums = {2,2,1,1,1,2,2}; 
 
     ListNode* head = new ListNode(1);
-    head->next = new ListNode(9);
-    head->next->next = new ListNode(9);
-    head->next->next->next = new ListNode(1);
-
-    traverse(head);
-    int rem = recursive(head);
-    if(rem == 1){
-        ListNode* newNode = new ListNode(1);
-        newNode->next = head;
-        head = newNode;
-    }
-    cout << rem << endl;
-    traverse(head);
-
+    head->next->next = new ListNode(3);
+    head->next->next->next = new ListNode(7);
+    head->next->next->next->next = new ListNode(4);
+    int len = lengthOfLoopBetter(head);
+    cout << len << endl;
 }
