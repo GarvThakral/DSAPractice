@@ -95,3 +95,44 @@ ListNode* reverseLinkedList(ListNode*& head){
         }
         return true;
     }
+
+    /**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+
+    ListNode* removeNthFromEnd(ListNode* head, int n) {
+        if(head == nullptr){
+            return nullptr;
+        }
+        if(head->next == nullptr){
+            return nullptr;
+        }
+        ListNode* hare = head;
+        ListNode* tortoise = head;
+        int index = 0;
+        while (index < n && hare != nullptr) {
+            hare = hare->next;
+            index++;
+        }
+        if (hare == nullptr) {
+            return head->next;
+        }
+        while(hare->next!=nullptr){
+            hare = hare->next;
+            tortoise = tortoise->next;
+        }
+
+
+        tortoise->next = tortoise->next->next;
+        return head;
+    }
+};
