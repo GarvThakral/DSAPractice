@@ -1,3 +1,4 @@
+#include <vector>
 #include <iostream>
 using namespace std;
 
@@ -61,8 +62,69 @@ void subSequencesString(string s,int len){
     cout << s.substr(s.size()-1-len,len);
     subSequencesString(s,len+1);
 }
+vector<vector<int>> glob ;
+vector<vector<int>> combinationSum(int index , int target , vector<int> temp , vector<int>& candidates) {
+    if(index == (candidates.size())){
+        if(target == 0){
+            glob.push_back(temp);
+        }
+        return glob;
+    }
+    // Picked
+    if((target - candidates[index])>-1){
+        vector<int> newTemp = temp;
+        newTemp.push_back(candidates[index]);
+        combinationSum(index,target-candidates[index],newTemp,candidates);
+    }
+    // Not picked
+    combinationSum(index+1,target,temp,candidates);
+    return glob;
 
+}  
+
+
+    double calculatePow(double x , long long int n){
+        if(n  == 0){
+            return 1;
+        }
+        if(n%2 == 0){
+            return calculatePow(x*x,n/2);
+        }
+        return x*calculatePow(x,n-1);
+    }
+
+    double myPow(double x, int n) {
+        if(n == 0){
+            return 1;
+        }
+        if(n == 1){
+            return x;
+        }
+        if(x == 1){
+            return 1;
+        }
+
+        bool neg = false;
+        long long int nn = n;
+        if(nn < 0){
+            nn = -1*nn;
+            neg = true;
+        }
+        double val = calculatePow(x,nn);
+        if(neg){
+            return 1/val;
+        }
+        return val;
+    }
 int main(){
-    subSequencesString("garv",0);
+    vector<int> candidates = {2,3,6,7};
+    int target = 7;    
+    vector<vector<int>> combinations = combinationSum(0,target,{},candidates);
     
+    for(auto vec : glob){
+        for(auto item:vec){
+            cout << item << " ";
+        }
+        cout << endl;
+    }
 }
