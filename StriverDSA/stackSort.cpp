@@ -74,16 +74,11 @@ void insertSorted(stack<int>& s, int x) {
     }
     if(x >= s.top()){
         s.push(x);
-    }else{
-        vector<int> popped;
-    while(!s.empty() && s.top() > x) {
-        popped.insert(popped.begin(), s.top());
-        s.pop();
+        return;
     }
+    int bigger = s.top();
+    s.pop();
+    insertSorted(s,x);
+    s.push(bigger);
 
-        s.push(x);
-        for(auto it:popped){
-            s.push(it);
-        }
-    }
 }
