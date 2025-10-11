@@ -67,6 +67,26 @@ void reverseStack(stack<int>& s) {
     insertReversed(s,popped);
 }
 
+set<vector<int>> glob;
+
+void recSub(vector<int> temp,vector<int>& nums,int index){
+    if(index == nums.size()){
+        return ;
+    }
+    temp.push_back(nums[index]);
+    glob.insert(temp);
+    recSub(temp,nums,index+1);
+    temp.pop_back();
+    glob.insert(temp);
+    recSub(temp,nums,index+1);
+
+}
+vector<vector<int>> subsets(vector<int>& nums) {
+    recSub({},nums,0);
+    vector<vector<int>> answer (glob.begin(),glob.end());
+    return answer;
+}
+
 void insertReversed(stack<int>& s, int x) {
     if(s.empty()){
         s.push(x);
