@@ -34,9 +34,47 @@ string int_to_binary(int num){
     return answer;
 }
 
+string ones_complement(string bitString){
+    for(char &c:bitString){
+        if(c == '0'){
+            c = '1';
+        }else{
+            c = '0';
+        }
+    }
+    string answer = "";
+    int index = 0;
+    while(bitString[index] == '0'){
+        index++;
+    }
+    for(int i = index;i<bitString.size() ;i++){
+        answer += bitString[i];
+    }
+    return answer;
+}
+
+string twos_complement(string bitString){
+    string ones = ones_complement(bitString);
+    string temp = "0" + ones;
+    for(int i = temp.size()-1;i>=0 ;i--){
+        cout << temp << endl;
+        if(i == 0){
+            temp[i] = '1';
+            break;
+        }
+        if(temp[i] == '0'){
+            temp[i] = '1';
+            break;
+        }
+        temp[i] = '0';
+    }
+    return temp;
+}
+
 int main(){
     // int number = binary_to_int("101101001010100");
     // cout << number;
-    cout << int_to_binary(13) << endl;
+    // cout << int_to_binary(13) << endl;
+    cout << twos_complement("10010");
     return 0;
 }
