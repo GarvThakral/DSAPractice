@@ -1,6 +1,7 @@
 #include <iostream>
 #include <algorithm>
 #include <cmath>
+#include <vector>
 using namespace std;
 
 
@@ -71,10 +72,29 @@ string twos_complement(string bitString){
     return temp;
 }
 
+bool isPowerTwo(int num){
+    return num&(num-1) == 0;
+}
+
+int numSetBits(int num){
+    int count = 0;
+    while(num!=0){
+        if((num&1) == 1){
+            count++;
+        }
+        num /= 2;
+    }
+    return count;
+}
+
 int main(){
     // int number = binary_to_int("101101001010100");
     // cout << number;
     // cout << int_to_binary(13) << endl;
-    cout << twos_complement("10010");
+    // cout << twos_complement("10010");
+    vector<int> testCase = {16,31,13,1,0};
+    for(int i = 0 ; i < 5 ;i++){
+        cout << numSetBits(testCase[i]) << endl;
+    }
     return 0;
 }
