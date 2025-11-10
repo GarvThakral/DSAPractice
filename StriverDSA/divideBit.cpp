@@ -1,11 +1,7 @@
-#include <iostream>
-#include <cmath>
-#include <climits>
-using namespace std;
-
-
-int divideBit(int dividend , int divisor){
-    if(dividend ==0 || divisor == 0){
+class Solution {
+public:
+    int divide(int dividend, int divisor) {
+            if(dividend ==0 || divisor == 0){
         return 0;
     }
     bool isNegative = false;
@@ -16,26 +12,30 @@ int divideBit(int dividend , int divisor){
             isNegative = true;
         }
     }
-    int sum = 0;
-    dividend = abs(dividend);
-    divisor = abs(divisor);
-    while(dividend >= divisor){
+    if(dividend == divisor) return 1;
+    if(dividend == INT_MIN && divisor == -1) return INT_MAX;
+    if(divisor == 1) return dividend;
+
+    long long sum = 0;
+    long long dvd = dividend;
+    long long dvs = divisor;
+    dvd = llabs(dvd);
+    dvs = llabs(dvs);
+    while(dvd >= dvs){
         int maxPow = 0;
-        while(dividend >= (divisor<< maxPow) ){
+        while(maxPow < 32 && dvd >= (dvs<< maxPow)){
             maxPow++;
         }
-        dividend -= (divisor << maxPow-1);
-        sum+=pow(2,maxPow-1);
+        // if((sum+(1LL << (maxPow-1)) > INT_MAX && !isNegative)) return INT_MAX;
+        // if((sum+(1LL << (maxPow-1)) > INT_MAX && isNegative))return INT_MIN;
+        dvd -= (dvs << maxPow-1);
+        sum += (1LL << (maxPow-1));
+
     }
-    if(sum == INT_MIN){
-        return INT_MAX-1;
-    }
+
     if(isNegative){
         return -sum;
     }
     return sum;
-}
-
-int main(){
-    cout << divideBit(10,0);
-}
+    }
+};
