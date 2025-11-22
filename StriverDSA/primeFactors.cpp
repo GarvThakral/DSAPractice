@@ -30,10 +30,28 @@ vector<int> primeFactors(int num){
     }
     return answers;
 }
+vector<int> primeFactorsOptimal(int num){
+    vector<int> answers;
+    int startNum = num;
+    if(num <= 1) return answers;
+    if(num == 2) return {2};     
+    for(int i = 2 ;  i * i <= num;i++){
+        if((num%i) == 0){
+            answers.push_back(i);
+            while((num%i) == 0){
+                num /= i;
+            }
+        }
+    }
+    if(num != 1){
+        answers.push_back(num);
+    }
+    return answers;
+}
 
 int main(){
-    int num = 36;
-    vector<int> answers = primeFactors(num);
+    int num = 35;
+    vector<int> answers = primeFactorsOptimal(num);
     for(auto ans:answers){
         cout << ans << ' ';
     }
