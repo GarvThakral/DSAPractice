@@ -1,5 +1,6 @@
 #include <iostream>
 #include <stack>
+#include <algorithm>
 using namespace std;
 
 int return_priority(char op){
@@ -71,9 +72,59 @@ string infix_to_postfix(string expression){
     return answer;
 }
 
+string infix_to_postfix_controlled(string expression){
+    stack<char> operator_stack;
+    string answer = "";
+    for(char c:expression){
+        if(c == ' '){
+            continue;
+        }
+        if(c=='(') c=')';
+        else if(c==')') c='(';
+        if(c == '+' || c == '-' || c == '*' || c == '/' || c == '^'){
+            if(operator_stack.empty()){
+                operator_stack.push(c);
+            }else{
+                while(!operator_stack.empty() &&
+                        return_priority(operator_stack.top()) > return_priority(c) && operator_stack.top()!='(')
+                    {
+                        answer.push_back(operator_stack.top());
+                        operator_stack.pop();
+                    }
+                    operator_stack.push(c);
+            }
+        }else if(c == '('){
+            operator_stack.push(c);
+        }        else if(c == ')'){
+            while(operator_stack.top()!='('){
+                answer.push_back(operator_stack.top());
+                operator_stack.pop();
+            }
+            operator_stack.pop();
+        }        else{
+            answer.push_back(c);
+        }
+    }
+    while(!operator_stack.empty()){
+        if(operator_stack.top()!='(' && operator_stack.top()!=')' ){
+            answer.push_back(operator_stack.top());
+        }
+        operator_stack.pop();
+    }
+    return answer;
+}
+
+
+string infix_to_prefix(string expression){
+    reverse(expression.begin(),expression.end());
+    string answer = infix_to_postfix_controlled(expression);
+    reverse(answer.begin(),answer.end());
+    return answer;
+
+}
 
 int main(){
 
-    cout << infix_to_postfix("A + B * (C ^ D - E)");
+    cout << infix_to_prefix("(A + B) * C - D + F");
 
 }

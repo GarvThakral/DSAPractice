@@ -26,11 +26,8 @@ public:
             head = newNode;
             return;
         }
-        ListNode* temp = head;
-        while(temp->next != nullptr){
-            temp = temp->next;
-        }
-        temp->next = newNode;
+        newNode->next = head;
+        head = newNode;
         return;
     }
     void pop(){
@@ -44,12 +41,10 @@ public:
             head = nullptr;
             return;
         }
-        ListNode* temp = head;
-        while(temp->next->next!= nullptr){
-            temp = temp->next;
-        }
-        delete temp->next;
-        temp->next = nullptr;
+        ListNode* oldHead = head;
+        head = head->next;
+        delete oldHead;
+        return;
     }
     int getSize(){
         return size;

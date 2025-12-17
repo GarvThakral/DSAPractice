@@ -197,6 +197,9 @@ ListNode* startingPoint(ListNode* head){
     return nullptr;
 }
 
+
+sort LL
+
 int main(){
     vector<int> nums = {2,2,1,1,1,2,2}; 
 

@@ -22,3 +22,37 @@ bool is_valid(string paran_string , int index , int count){
 int main(){
     cout << is_valid("(*)",0,0);
 }
+
+class Solution {
+public:
+    bool checkValidString(string s) {
+        int min = 0;
+        int max = 0;
+        for(int i = 0 ; i < s.size() ; i++){
+            if(s[i] == '('){
+                min++;
+                max++;
+            }else if(s[i] == ')'){
+                if(min+max == 0){
+                    return false;
+                }
+                if(min == 0){
+                    max--;
+                }else{
+                    min--;
+                    max--;
+                }
+            }else{
+                if(min+max == 0){
+                    max++;
+                }else if(min == 0){
+                    max++;
+                }else{
+                    min--;
+                    max++;
+                }
+            }
+        }
+    return min == 0;
+    }
+};

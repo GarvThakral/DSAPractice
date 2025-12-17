@@ -19,14 +19,11 @@ void checkSubsequenceSum(vector<int>& nums,int index, int target ,vector<int> te
 }
 
 
+
+
 int main(){
     vector<int> nums = {1,2,3,4,5};
     vector<int> temp;
     checkSubsequenceSum(nums,0,8 ,temp);
-    for(auto vec:glob){
-        for(int item:vec){
-            cout << item << " ";
-        }
-        cout << endl;
-    }
+    cout 
 }
